@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 
 for i in range(5):
+    fig, ax = plt.subplots()
     name="00"+str(i+1)+".dat"
     with open(name, 'r') as f:
         x=[]
@@ -9,6 +10,6 @@ for i in range(5):
             a,b=(float(z) for z in f.readline().split())
             x.append(a)
             y.append(b)
-        plt.scatter(x,y)
-        plt.title(name)
+        ax.scatter(x,y)
+        ax.title(name)
         plt.savefig(name+".png")

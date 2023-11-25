@@ -2,10 +2,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 a=np.loadtxt('signal03.dat')
-b=np.zeros_like(a)
 
-for i in range(len(b)):
-    b[i]=a[max(0,i-9):i+1].mean()
+
+b=np.cumsum(a)
+d=np.zeros_like(a)
+d[10:]=np.cumsum(a[:-10])
+b-=d
+b[10:]=b[10:]/10
+b[:10]=b[:10]/np.linspace(1,10,10)
+
+
 fig, ax = plt.subplots(nrows=1, ncols=2)
 
 ax[1].plot(b)

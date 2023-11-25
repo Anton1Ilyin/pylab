@@ -3,11 +3,8 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 
 u=np.loadtxt('np3.txt')
-A=np.zeros((len(u),len(u)))
+A=-1*np.eye(len(u), k=-1, dtype=int)+np.eye(len(u), dtype=int)
 A[0][len(u)-1]=-1
-for i in range(len(u)):
-    A[i][max(0,i-1)]=-1
-    A[i][i]=1
 u1 = np.zeros_like(u)
 
 fig, ax = plt.subplots()

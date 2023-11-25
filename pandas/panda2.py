@@ -1,14 +1,23 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 
-s=set()
 df=pd.read_csv('flights.csv', sep=',').loc[:,['CARGO','PRICE','WEIGHT']]
-print(df)
-for i in df.loc[:, 'CARGO']:
-    s.add(i)
-data2=[]
-for i in s:
-    w=df[df["CARGO"]==i].loc[:,"WEIGHT"].sum()
-    p=df[df["CARGO"]==i].loc[:,"PRICE"].sum()
-    k=len(df[df["CARGO"]==i].loc[:,"WEIGHT"])
-    data2.append((i,w,p,k))
-print(pd.DataFrame(data2,columns=("CARGO", "WEIGHT","PRICE","COUNT")))
+
+fig, ax=plt.subplots()
+aw = df.groupby('CARGO').sum()["WEIGHT"]
+ap = df.groupby('CARGO').sum()["PRICE"]
+ac = df.groupby('CARGO').count()["WEIGHT"]
+
+ax = aw.plot(kind='bar')
+ax.set_title("Weight per company")
+plt.show()
+
+fig, ax=plt.subplots()
+ax = ap.plot(kind='bar')
+ax.set_title("Price per company")
+plt.show()
+
+fig, ax=plt.subplots()
+ax.set_title("Count per company")
+ax = ac.plot(kind='bar')
+plt.show()

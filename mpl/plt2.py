@@ -15,8 +15,6 @@ with open(name, 'r') as f:
         ax.plot(x,y)
         ax.set_xlim(left=minx, right=maxx)
         ax.set_ylim(bottom=miny-2, top=maxy+2)
-        ax.grid()
-
         ax.grid(which='major', color='k')
         ax.yaxis.set_major_locator(ticker.MultipleLocator(2))
         ax.xaxis.set_major_locator(ticker.MultipleLocator(1))
