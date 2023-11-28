@@ -11,5 +11,6 @@ for i in range(5):
             x.append(a)
             y.append(b)
         ax.scatter(x,y)
-        ax.title(name)
-        plt.savefig(name+".png")
+        ax.set_aspect('equal')
+        plt.show()
+        #plt.savefig(name+".png")
